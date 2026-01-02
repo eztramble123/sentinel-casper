@@ -1,36 +1,146 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sentinel - AI DeFi Agent on Casper Network
 
-## Getting Started
+An AI-powered DeFi agent that owns a wallet on Casper Network testnet. Interact with the blockchain through natural language - check balances, send tokens, and explore staking.
 
-First, run the development server:
+Built for the **Casper Hackathon 2026**.
+
+## Features
+
+- **AI-Powered Chat Interface** - Natural language interaction powered by Claude
+- **Wallet Management** - Server-side wallet that the agent controls
+- **CSPR Transfers** - Send tokens to any Casper address
+- **Balance Checking** - Real-time balance queries
+- **Validator Explorer** - View staking validators and delegation info
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js 18+
+- pnpm
+- Anthropic API key ([get one here](https://console.anthropic.com/))
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Install dependencies
+pnpm install
+
+# Copy environment template
+cp .env.example .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Configuration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Edit `.env.local` with your Anthropic API key:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+ANTHROPIC_API_KEY=sk-ant-...
+```
 
-## Learn More
+### Run Development Server
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### First Run - Wallet Generation
 
-## Deploy on Vercel
+On first run, if no `CASPER_PRIVATE_KEY` is set, Sentinel will generate a new wallet and print the private key to the console:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+========================================
+NEW WALLET GENERATED
+========================================
+Public Key: 01abc...
+Account Hash: account-hash-...
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+SAVE THIS PRIVATE KEY TO .env.local:
+CASPER_PRIVATE_KEY=...
+
+Fund your wallet at:
+https://testnet.cspr.live/tools/faucet
+========================================
+```
+
+1. Copy the `CASPER_PRIVATE_KEY` line to your `.env.local`
+2. Visit the [testnet faucet](https://testnet.cspr.live/tools/faucet) to fund your wallet
+3. Restart the dev server
+
+## Usage
+
+Once running, you can interact with Sentinel using natural language:
+
+- **"What's my wallet address?"** - Get the agent's public key
+- **"Check my balance"** - See current CSPR balance
+- **"Send 10 CSPR to 01abc..."** - Transfer tokens
+- **"List staking validators"** - View available validators
+- **"How does staking work?"** - Learn about Casper staking
+
+## Tech Stack
+
+- **Next.js 15** - React framework with App Router
+- **Vercel AI SDK v6** - Streaming AI responses with tool calling
+- **Claude Sonnet** - LLM for natural language understanding
+- **casper-js-sdk v5** - Official Casper JavaScript SDK
+- **Tailwind CSS** - Styling
+- **TypeScript** - Type safety
+
+## Project Structure
+
+```
+sentinel-casper/
+├── app/
+│   ├── page.tsx              # Main chat interface
+│   └── api/
+│       ├── chat/route.ts     # AI chat endpoint
+│       └── wallet/           # Wallet info endpoints
+├── lib/
+│   ├── casper/
+│   │   ├── client.ts         # RPC client
+│   │   ├── wallet.ts         # Key management
+│   │   ├── transfer.ts       # Token transfers
+│   │   └── staking.ts        # Validator queries
+│   └── ai/
+│       ├── tools.ts          # Claude tool definitions
+│       └── prompts.ts        # System prompt
+└── components/
+    └── chat/                 # Chat UI components
+```
+
+## Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `CASPER_NODE_URL` | Casper RPC endpoint (default: testnet) |
+| `CASPER_CHAIN_NAME` | Chain name (default: casper-test) |
+| `CASPER_PRIVATE_KEY` | Ed25519 private key hex |
+| `ANTHROPIC_API_KEY` | Claude API key |
+
+## Security Notes
+
+- This is a **hackathon demo** - not production ready
+- Private keys are stored in environment variables
+- Only use on **testnet** - tokens have no real value
+- Never commit `.env.local` to version control
+
+## Deployment
+
+Deploy to Vercel:
+
+```bash
+vercel deploy
+```
+
+Add environment variables in the Vercel dashboard.
+
+## License
+
+MIT
+
+---
+
+Built with AI for the Casper Hackathon 2026
+# sentinel-casper
