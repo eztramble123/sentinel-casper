@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
+/* Neo-Brutalism Design System */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
+  --surface: #ffffff;
+  --border: #000000;
+  --border-width: 3px;
+  --shadow-offset: 4px;
 }
 
 @theme inline {
@@ -12,15 +17,322 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Neo-Brutalism Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+  border-left: 3px solid #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border: 2px solid #000000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e5e5e5;
+}
+
+/* Neo-Brutalism Card */
+.neo-card {
+  background: white;
+  color: black;
+  border: 3px solid black;
+  box-shadow: 4px 4px 0 black;
+}
+
+.neo-card-sm {
+  background: white;
+  color: black;
+  border: 2px solid black;
+  box-shadow: 3px 3px 0 black;
+}
+
+.neo-card-hover {
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.neo-card-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 black;
+}
+
+.neo-card-hover:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 black;
+}
+
+/* Neo-Brutalism Button */
+.neo-btn {
+  background: black;
+  color: white;
+  border: 3px solid black;
+  box-shadow: 4px 4px 0 black;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.neo-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 black;
+}
+
+.neo-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 black;
+}
+
+.neo-btn-white {
+  background: white;
+  color: black;
+}
+
+.neo-btn-sm {
+  background: black;
+  color: white;
+  border: 2px solid white;
+  box-shadow: 3px 3px 0 white;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.neo-btn-sm:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 white;
+}
+
+.neo-btn-sm:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 white;
+}
+
+/* Neo-Brutalism Input */
+.neo-input {
+  background: white;
+  color: black;
+  border: 3px solid black;
+  outline: none;
+}
+
+.neo-input:focus {
+  box-shadow: 4px 4px 0 black;
+}
+
+.neo-input::placeholder {
+  color: #666666;
+}
+
+/* Prose styles for markdown - Neo-Brutalism */
+.prose {
+  color: inherit;
+}
+
+.prose p {
+  margin: 0.5em 0;
+}
+
+.prose code {
+  background: #f5f5f5;
+  border: 2px solid black;
+  padding: 0.2em 0.4em;
+  font-size: 0.9em;
+}
+
+.prose pre {
+  background: white;
+  border: 2px solid black;
+  padding: 1em;
+  overflow-x: auto;
+  box-shadow: 3px 3px 0 black;
+}
+
+.prose a {
+  color: black;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 600;
+}
+
+.prose a:hover {
+  background: black;
+  color: white;
+}
+
+/* Agent Activity Timeline - Neo-Brutalism */
+.agent-timeline {
+  position: relative;
+}
+
+.agent-timeline::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 24px;
+  bottom: 24px;
+  width: 3px;
+  background: black;
+}
+
+/* Sharp animations */
+@keyframes neo-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.neo-pulse {
+  animation: neo-pulse 1s step-end infinite;
+}
+
+/* Loading bar animation */
+@keyframes neo-loading {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.neo-loading-bar {
+  height: 4px;
+  background: black;
+  animation: neo-loading 2s linear infinite;
+}
+
+/* Slide-in animation - snappier */
+@keyframes slide-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in-up {
+  animation: slide-in-up 0.15s ease-out;
+}
+
+/* Token badge - Neo-Brutalism */
+.token-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 2px solid black;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+/* Status indicators */
+.status-success {
+  border-color: black;
+  background: white;
+}
+
+.status-error {
+  border-color: black;
+  background: black;
+  color: white;
+}
+
+/* Divider */
+.neo-divider {
+  height: 3px;
+  background: black;
+}
+
+/* Sharp focus outline */
+*:focus-visible {
+  outline: 3px solid black;
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: black;
+  color: white;
+}
+
+/* Sharp border utilities */
+.border-brutal {
+  border: 3px solid black;
+}
+
+.border-brutal-2 {
+  border: 2px solid black;
+}
+
+.shadow-brutal {
+  box-shadow: 4px 4px 0 black;
+}
+
+.shadow-brutal-sm {
+  box-shadow: 3px 3px 0 black;
+}
+
+.shadow-brutal-xs {
+  box-shadow: 2px 2px 0 black;
+}
+
+.shadow-brutal-lg {
+  box-shadow: 6px 6px 0 black;
+}
+
+/* Inverted variant */
+.neo-inverted {
+  background: black;
+  color: white;
+  border-color: white;
+  box-shadow: 4px 4px 0 white;
+}
+
+/* Striped background for loading */
+@keyframes stripe-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 0;
+  }
+}
+
+.neo-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0, 0, 0, 0.1) 10px,
+    rgba(0, 0, 0, 0.1) 20px
+  );
+  animation: stripe-move 1s linear infinite;
+}
+
+/* Uppercase headings */
+.neo-heading {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
