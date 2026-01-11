@@ -43,8 +43,8 @@ Built for the **Casper Hackathon 2026**.
 
 ```bash
 # Clone the template
-git clone https://github.com/your-repo/casper-agent-framework
-cd casper-agent-framework
+git clone https://github.com/eztramble123/sentinel-casper
+cd sentinel-casper
 
 # Install dependencies
 pnpm install
